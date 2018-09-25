@@ -1,6 +1,6 @@
 var canvas = document.getElementById("canvas");
-canvas.width = 800;
-canvas.height = 450;
+canvas.width = 850;
+canvas.height = 400;
 var cxt = canvas.getContext("2d");
 
 var flag  =  false;
@@ -162,6 +162,10 @@ function save() {
             contentType: "application/x-www-form-urlencoded",
             success:function (data){
                 console.log("data in save:"+data);
+                if(data==="true"){
+                    var txt=  "保存成功！";
+                    window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.success);
+                }
             },
             error: function(){
                 alert("error");

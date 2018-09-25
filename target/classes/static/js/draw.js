@@ -1,6 +1,6 @@
 var canvas = document.getElementById("canvas");
-canvas.width = 800;
-canvas.height = 500;
+canvas.width = 850;
+canvas.height = 400;
 var cxt = canvas.getContext("2d");
 
 var flag  =  false;
@@ -24,14 +24,14 @@ function draw(){
 }
 
 function drawCurls(){
-    console.log("in drawCurls")
+   /* console.log("in drawCurls")*/
     deleteCurl();
     curlArray = JSON.parse(localStorage.curlLocal);
     shape_list = JSON.parse(localStorage.shapeLocal);
     shape_str = localStorage.shape_str;
 
-    console.log("curlArray:"+curlArray);
-    console.log("length:"+curlArray.length);
+   /* console.log("curlArray:"+curlArray);
+    console.log("length:"+curlArray.length);*/
 
     for(var i=0;i<curlArray.length;i++){
         cxt.moveTo(curlArray[i][0],curlArray[i][1]);
@@ -162,6 +162,10 @@ function save() {
             contentType: "application/x-www-form-urlencoded",
             success:function (data){
                 console.log("data in save:"+data);
+                if(data==="true"){
+                    var txt=  "保存成功！";
+                    window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.success);
+                }
             },
             error: function(){
                 alert("error");

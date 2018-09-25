@@ -6,7 +6,7 @@ function getAllFiles(){
         dataType: "text",
         contentType: "application/x-www-form-urlencoded",
         success:function (data){
-            console.log("data in getAllFileNames:"+data);
+            /*console.log("data in getAllFileNames:"+data);*/
             var nameList = JSON.parse(data)
             $("#getAll").empty();
             var p1 = "<li onclick='read(";
@@ -38,7 +38,7 @@ function read(filename) {
         dataType: "text",
         contentType: "application/x-www-form-urlencoded",
         success:function (data){
-            console.log("data in read:"+data);
+           /* console.log("data in read:"+data);*/
             content = JSON.parse(data);
             var len = content.length;
             var shape_str = content[len-1];
