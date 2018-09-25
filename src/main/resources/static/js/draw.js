@@ -1,6 +1,6 @@
 var canvas = document.getElementById("canvas");
 canvas.width = 800;
-canvas.height = 500;
+canvas.height = 450;
 var cxt = canvas.getContext("2d");
 
 var flag  =  false;

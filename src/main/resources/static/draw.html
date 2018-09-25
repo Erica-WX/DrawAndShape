@@ -9,37 +9,76 @@
             /* position: absolute;*/
             /*font-family: 'DejaVu Sans Mono', monospace;*/
         }
+
+        .top_bar{
+            width: 100%;
+            background-color: #393231;
+            height: 70px;
+        }
+
+        .title{
+            color: #a8611d;
+            font-size: 37px;
+            padding-top: 0.5%;
+            padding-left: 2%;
+            font-family: "FZShuTi";
+            font-weight: bold;
+        }
+
+        .pane{
+            margin: auto;
+            padding-left: 20%;
+            padding-top: 5%;
+            width: 100%;
+            height: 700px;
+            background-image:url("img/back.jpg");
+            background-size: 105% 105%;
+            /*opacity: 0.7;*/
+
+        }
+
+        #canvas{
+            background-color: white;
+            box-shadow: 10px 10px 5px #888888;
+        }
     </style>
 </head>
 <body>
 
 <div>
-    <div id="pane">
-        <canvas id="canvas" style="border: 1px solid black">
 
-        </canvas>
+    <div class="top_bar">
+        <div class="title">Draw And Shape</div>
     </div>
 
-    <div style="display: flex">
-        <button onclick="deleteCurl()">clean</button>
-        <button onclick="save()">save</button>
+    <div class="pane">
 
-        <div class="btn-group">
-            <button onclick="getAllFiles()" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                getAll <span class="caret"></span>
-            </button>
-            <ul id="getAll" class="dropdown-menu">
-                <!--<li>Action</li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Separated link</a></li>-->
-            </ul>
+        <p style="font-size: 16px">在画布上一笔画图，粗略识别图形(∩_∩)</p>
+
+        <div class="canvas">
+            <canvas id="canvas">
+
+            </canvas>
+        </div>
+
+        <div style="display: flex">
+            <button onclick="deleteCurl()">clean</button>
+            <button onclick="save()">save</button>
+
+            <div class="btn-group">
+                <button onclick="getAllFiles()" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    getAll <span class="caret"></span>
+                </button>
+                <ul id="getAll" class="dropdown-menu">
+                </ul>
+            </div>
+
         </div>
 
     </div>
-
 </div>
+
+
 
 <script src="js/draw.js"></script>
 <script src="js/file.js"></script>
