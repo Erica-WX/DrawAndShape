@@ -25,6 +25,7 @@ function draw(){
 
 function drawCurls(){
    /* console.log("in drawCurls")*/
+    cxt.strokeStyle="black";
     deleteCurl();
     curlArray = JSON.parse(localStorage.curlLocal);
     shape_list = JSON.parse(localStorage.shapeLocal);
@@ -72,6 +73,7 @@ function drawPencil(e){
 
 function mouseDownCurl(e) {
     /*deleteCurl();*/
+    cxt.strokeStyle="black";
     x_curl  =  e.offsetX; // 鼠标落下时的X
     y_curl  =  e.offsetY; // 鼠标落下时的Y
     pointList[0]=x_curl;
@@ -110,19 +112,79 @@ function test() {
         dataType: "text",
         contentType: "application/x-www-form-urlencoded",
         success:function (data){
-            /*alert(data);*/
+            console.log(data)
             var x = pointList[0];
             var y = pointList[1];
             /*   console.log("x:"+x+"  y:"+y);*/
+            var result = data.split(",");
+            var len = result.length;
+            var shape = result[len-1];
+            write_shape(x,y,shape);
+            shape_str = shape_str + shape +",";
 
-            write_shape(x,y,data);
-            shape_str = shape_str + data +",";
+            result.pop();
+            var curls = [];
+            for(var i=0;i<result.length;i++){
+                var num = parseFloat(result[i]);
+                curls.push(num);
+            }
+
+            console.log("shape:"+shape);
+            if(shape==="CIRCLE"){
+                drawCircle(curls);
+            }else{
+                drawShape(curls);
+            }
 
         },
         error: function(){
             alert("error");
         }
     })
+}
+
+function drawShape(curls) {
+    console.log("curls:"+curls);
+
+    cxt.moveTo(curls[0],curls[1]);
+    for(var j=1;j<curls.length/2;j++){
+        cxt.lineTo(curls[j*2],curls[j*2+1]);
+    }
+    cxt.lineTo(curls[0],curls[1]);
+    cxt.strokeStyle="#45a0ee";
+    cxt.stroke();
+    cxt.beginPath();
+
+}
+
+function drawCircle(curls){
+
+    console.log("draw circle");
+
+    var x1 = curls[0];
+    var y1 = curls[1];
+    var x2 = curls[4];
+    var y2 = curls[5];
+    var x3 = curls[8];
+    var y3 = curls[9];
+
+    var e = 2 * (x2 - x1);
+    var f = 2 * (y2 - y1);
+    var g = x2*x2 - x1*x1 + y2*y2 - y1*y1;
+    var a = 2 * (x3 - x2);
+    var b = 2 * (y3 - y2);
+    var c = x3*x3 - x2*x2 + y3*y3 - y2*y2;
+    var X = (g*b - c*f) / (e*b - a*f);
+    var Y = (a*g - c*e) / (a*f - b*e);
+    var R = Math.sqrt((X-x1)*(X-x1)+(Y-y1)*(Y-y1));
+
+    console.log("x:"+X+"   y:"+Y +"   R:"+R);
+    cxt.beginPath();
+    cxt.strokeStyle="#45a0ee";
+    cxt.arc(X,Y,R,0,2*Math.PI,true);
+    /*cxt.closePath();*/
+    cxt.stroke();
+    cxt.beginPath();
 }
 
 function write_shape(x,y,data) {

@@ -39,8 +39,10 @@ public class ShapeImpl implements ShapeBL {
         Imgproc.approxPolyDP(mp2f,polyShape,0.04*peri,true);
 
         Point[] points = polyShape.toArray();
+        String curl = "";
         for(Point p : points) {
             System.out.print("("+p.x+","+p.y+")  ");
+            curl = curl + p.x + "," + p.y + ",";
         }
         System.out.println();
 
@@ -49,10 +51,10 @@ public class ShapeImpl implements ShapeBL {
         switch (shapeLen){
             case 2:
                 System.out.println("线段");
-                return "CURL";
+                return curl+"CURL";
             case 3:
                 System.out.println("TRIANGLE");
-                return "TRIANGLE";
+                return curl+"TRIANGLE";
             case 4:
                 Rect rect = Imgproc.boundingRect(mp);
                 float width = rect.width;
@@ -61,17 +63,17 @@ public class ShapeImpl implements ShapeBL {
                 //计算宽高比，判断是矩形还是正方形
                 if (ar>=0.95 && ar <=1.05) {
                     System.out.println("SQUARE");
-                    return "SQUARE";
+                    return curl+"SQUARE";
                 }else {
                     System.out.println("RECTANGLE");
-                    return "RECTANGLE";
+                    return curl+"RECTANGLE";
                 }
             case 5:
                 System.out.println("PENTAGON");
-                return "PENTAGON";
+                return curl+"PENTAGON";
             default:
                 System.out.println("CIRCLE");
-                return "CIRCLE";
+                return curl+"CIRCLE";
         }
     }
 
