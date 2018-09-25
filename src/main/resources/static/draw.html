@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Draw</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        #pane{
+            /* position: absolute;*/
+            /*font-family: 'DejaVu Sans Mono', monospace;*/
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <div id="pane">
+        <canvas id="canvas" style="border: 1px solid black">
+
+        </canvas>
+    </div>
+
+    <div style="display: flex">
+        <button onclick="deleteCurl()">clean</button>
+        <button onclick="save()">save</button>
+
+        <div class="btn-group">
+            <button onclick="getAllFiles()" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                getAll <span class="caret"></span>
+            </button>
+            <ul id="getAll" class="dropdown-menu">
+                <!--<li>Action</li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>-->
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="js/draw.js"></script>
+<script src="js/file.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+    draw();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+server:
+  port: 8091
+  tomcat:
+    max-http-post-size: "20971520"
+
+spring:
+  mvc:
+    prefix: /
+    suffix: .html
+    cache: false
+    static-path-pattern: /**
